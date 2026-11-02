@@ -5,6 +5,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
 PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
 MODEL_DIR = PROJECT_ROOT / "models"
+REGISTERED_MODEL_NAME = "otto-ranker"
 
 EVENTS_PATH = PROCESSED_DIR / "otto_train_300k_sessions.parquet"
 VALID_EXAMPLES_PATH = PROCESSED_DIR / "otto_validation_300k_sessions.parquet"

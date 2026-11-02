@@ -117,6 +117,24 @@ ipython_config.py
 .pdm-python
 .pdm-build/
 
+# Local project environments
+agentic_venv/
+.vscode/
+
+# Local data and generated model artifacts
+models/
+mlartifacts/
+mlflow.db
+src/recommendation/mlflow.db
+
+# Local AWS and tool state
+.aws/
+.codex/
+.agents/
+
+# Local logs and operating-system files
+Thumbs.db
+
 # pixi
 #   Similar to Pipfile.lock, it is generally recommended to include pixi.lock in version control.
 # pixi.lock

@@ -97,9 +97,16 @@ def train_ranker(train_df, valid_df):
 
         scored_valid = valid_df.copy()
         scored_valid["score"] = ranker.predict(X_valid)
+        
+        metrics = evaluate_ranker(
+            scored_valid,
+            score_column="score",
+            k=20,
+        )
 
-        metrics = evaluate_ranker(scored_valid, k=20)
         mlflow.log_metrics(metrics)
+
+        print(metrics)
 
         MODEL_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -126,6 +133,21 @@ def train_ranker(train_df, valid_df):
         print(f"Metrics: {metrics}")
 
     client = MlflowClient()
+    registered_model = client.get_model_version_by_alias
+    registered_version = model_info.registered_model_version
+
+    client.set_registered_model_alias(
+    name=REGISTERED_MODEL_NAME,
+    alias="candidate",
+    version=str(registered_version),
+)
+
+    print(
+    f"Candidate alias updated: "
+    f"{REGISTERED_MODEL_NAME} v{registered_version}"
+    )
+
+    
 
     versions = client.search_model_versions(
         f"name='{REGISTERED_MODEL_NAME}'"

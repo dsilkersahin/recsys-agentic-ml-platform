@@ -21,3 +21,4 @@ def build_ranker(
         colsample_bytree=colsample_bytree,
         random_state=random_state,
     )
+
